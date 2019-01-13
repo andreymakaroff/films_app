@@ -12,7 +12,6 @@ import { createActions } from 'reduxsauce'
  * - to trigger sagas, for example in App/Sagas/index.js
  *
  * Actions can be dispatched:
- *
  * - in React components using `dispatch(...)`, for example in App/App.js
  * - in sagas using `yield put(...)`, for example in App/Sagas/ExampleSaga.js
  *
