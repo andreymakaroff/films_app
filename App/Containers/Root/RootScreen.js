@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import NavigationService from 'App/Services/NavigationService'
 import { View } from 'react-native'
 import styles from './RootScreenStyle'
-import ExampleScreen from 'App/Containers/Example/ExampleScreen'
+import ExampleScreen from 'App/Containers/UsersScreen/UsersScreen'
 import ExampleScreen2 from 'App/Containers/Example2/ExampleScreen'
 import SplashScreen from 'App/Containers/SplashScreen/SplashScreen'
 import { connect } from 'react-redux'
@@ -14,6 +14,37 @@ import StartupActions from 'App/Stores/Startup/Actions'
  *
  * @see https://reactnavigation.org/docs/en/hello-react-navigation.html#creating-a-stack-navigator
  */
+const BottomTabNavigator = createMaterialTopTabNavigator(
+  {
+    Users: ExampleScreen,
+    'Donut Chart': ExampleScreen2,
+    Featured: ExampleScreen2,
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: '#9dc4a9',
+      inactiveTintColor: '#bbbbc4',
+      upperCaseLabel: false,
+      scrollEnabled: true,
+      pressColor: '#9dc4a9',
+      labelStyle: {
+        fontSize: 14,
+        fontFamily: 'Lato',
+      },
+      allowFontScaling: false,
+      indicatorStyle: {
+        backgroundColor: '#9dc4a9',
+        height: 3,
+      },
+      style: {
+        backgroundColor: '#fbfcfa',
+        borderBottomWidth: 1,
+        borderBottomColor: '#dbdbdb',
+      },
+    },
+  }
+)
+
 const AppNav = createStackNavigator(
   {
     // Create the application routes here (the key is the route name, the value is the target screen)
@@ -21,8 +52,7 @@ const AppNav = createStackNavigator(
     SplashScreen: SplashScreen,
     // The main application screen is our "ExampleScreen". Feel free to replace it with your
     // own screen and remove the example.
-    MainScreen: ExampleScreen,
-    MainScreen2: ExampleScreen2,
+    userNav: BottomTabNavigator,
   },
   {
     // By default the application will show the splash screen

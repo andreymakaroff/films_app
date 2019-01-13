@@ -1,26 +1,38 @@
 import { put, call } from 'redux-saga/effects'
-import ExampleActions from 'App/Stores/Example/Actions'
-import { WeatherService } from 'App/Services/WeatherService'
+import UsersActions from 'App/Stores/Example/Actions'
+import { LoremUserService } from 'App/Services/loremUserService'
 
 /**
  * A saga can contain multiple functions.
  *
- * This example saga contains only one to fetch the weather temperature.
+ * This example saga contains only one to fetch the weather userList.
  * Feel free to remove it.
  */
-export function* fetchTemperature() {
+const filterUserList = (list) => {
+  return list.map(({ title, year, releaseDate, urlPoster, countries, rating, idIMDB, urlIMDB }) => {
+    return {
+      title,
+      year,
+      releaseDate,
+      urlPoster,
+      countries,
+      rating,
+      idIMDB,
+      urlIMDB,
+    }
+  })
+}
+
+export function* fetchUsers() {
   // Dispatch a redux action using `put()`
   // @see https://redux-saga.js.org/docs/basics/DispatchingActions.html
-  yield put(ExampleActions.fetchTemperatureLoading())
+  yield put(UsersActions.fetchUsersLoading())
 
-  // Fetch the temperature from an API
-  const temperature = yield call(WeatherService.fetchTemperature)
-
-  if (temperature) {
-    yield put(ExampleActions.fetchTemperatureSuccess(temperature))
+  // Fetch the userList from an API
+  const userList = yield call(LoremUserService.fetchUsers)
+  if (userList) {
+    yield put(UsersActions.fetchUsersSuccess(filterUserList(userList)))
   } else {
-    yield put(
-      ExampleActions.fetchTemperatureFailure('There was an error while fetching the temperature.')
-    )
+    yield put(UsersActions.fetchUsersFailure('There was an error while fetching the userList.'))
   }
 }
