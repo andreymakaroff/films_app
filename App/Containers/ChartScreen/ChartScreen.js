@@ -3,15 +3,14 @@ import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import UsersActions from 'App/Stores/Example/Actions'
 import PieChart from 'react-native-pie-chart'
-import { View } from 'react-native'
 import {
   Container,
   Content,
   ListItem,
   Text,
-  Left,
+  Left, H1,
   Body,
-  Right,Title,Subtitle,
+  Right,
   Button,
 } from 'native-base'
 import Style from './ChartScreenStyle'
@@ -31,24 +30,34 @@ class ChartScreen extends React.Component {
   }
 
   render() {
+    const { filmList } = this.props
     const chartInfo = this.modifyInfo()
     return (
       <Container>
-        <Body style={Style.container}>
-          <Title>
-            Top 20 films by decade
-          </Title>
-          <Subtitle>Subtitle</Subtitle>
-          <PieChart
-          chart_wh={250}
-          series={Object.values(chartInfo)}
-          sliceColor={SLICE_COLOR}
-          doughnut={true}
-          coverRadius={0.45}
-          coverFill={'#FFF'}
-        />
-        </Body>
         <Content>
+          {
+            !filmList &&
+            <Button
+              full
+              success
+              onPress={() => this.props.fetchFilms()}
+            >
+              <Text>Get films!</Text>
+            </Button>
+          }
+          <Body style={Style.container}>
+          <H1 style={Style.title}>
+            Top 20 films by decade
+          </H1>
+          <PieChart
+            chart_wh={250}
+            series={Object.values(chartInfo)}
+            sliceColor={SLICE_COLOR}
+            doughnut={true}
+            coverRadius={0.45}
+            coverFill={'#FFF'}
+          />
+          </Body>
           {
             Object.keys(chartInfo).map((i, index) => (
               <ListItem icon key={i}>
@@ -72,13 +81,10 @@ class ChartScreen extends React.Component {
 
 ChartScreen.propsTypes = {
   filmList: PropTypes.array,
-  filmListErrorMessage: PropTypes.string,
 }
 
 const mapStateToProps = (state) => ({
   filmList: state.example.get('filmList').toJS(),
-  filmListErrorMessage: state.example.get('filmListErrorMessage'),
-  filmListIsLoading: state.example.get('filmListIsLoading'),
 })
 
 const mapDispatchToProps = (dispatch) => ({

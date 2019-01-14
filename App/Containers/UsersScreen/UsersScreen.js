@@ -8,9 +8,9 @@ import UserItem from '../../Components/UserItem/UserItemView'
 import Style from './UsersScreenStyle'
 
 class UsersScreen extends React.Component {
-  componentDidMount() {
-    this.props.fetchFilms()
-  }
+  // componentDidMount() {
+  //   this.props.fetchFilms()   // fetch in ..films_app\App\Sagas\StartupSaga.js
+  // }
 
   _renderFooter = (isLoading) =>
     isLoading ? (
@@ -42,7 +42,7 @@ class UsersScreen extends React.Component {
     return (
       <View style={Style.container}>
         <ScrollView>
-          <Text style={Style.title}>List of 20 users</Text>
+          <Text style={Style.title}>List of 20 films</Text>
           <View style={{ flex: 1 }}>
             <FlatList
               data={filmList}

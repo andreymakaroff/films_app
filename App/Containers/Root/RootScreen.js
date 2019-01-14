@@ -16,8 +16,8 @@ import StartupActions from 'App/Stores/Startup/Actions'
  */
 const BottomTabNavigator = createMaterialTopTabNavigator(
   {
-    'Donut Chart': ChartScreen,
-    Users: ExampleScreen,
+    Chart: ChartScreen,
+    Films: ExampleScreen,
     Featured: ChartScreen,
   },
   {
@@ -25,7 +25,6 @@ const BottomTabNavigator = createMaterialTopTabNavigator(
       activeTintColor: '#9dc4a9',
       inactiveTintColor: '#bbbbc4',
       upperCaseLabel: false,
-      scrollEnabled: true,
       pressColor: '#9dc4a9',
       labelStyle: {
         fontSize: 14,
