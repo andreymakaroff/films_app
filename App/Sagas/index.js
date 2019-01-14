@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga/effects'
-import { ExampleTypes } from 'App/Stores/Example/Actions'
+import { FilmsTypes } from 'App/Stores/Films/Actions'
 import { StartupTypes } from 'App/Stores/Startup/Actions'
-import { fetchFilms } from './ExampleSaga'
+import { fetchFilms } from './FilmsSaga'
 import { startup } from './StartupSaga'
 
 export default function* root() {
@@ -12,6 +12,6 @@ export default function* root() {
     // Run the startup saga when the application starts
     takeLatest(StartupTypes.STARTUP, startup),
     // Call `fetchFilms()` when a `FETCH_FILMS` action is triggered
-    takeLatest(ExampleTypes.FETCH_FILMS, fetchFilms),
+    takeLatest(FilmsTypes.FETCH_FILMS, fetchFilms),
   ]
 }

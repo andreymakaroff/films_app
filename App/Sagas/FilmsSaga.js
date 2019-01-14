@@ -1,5 +1,5 @@
 import { put, call } from 'redux-saga/effects'
-import UsersActions from 'App/Stores/Example/Actions'
+import UsersActions from 'App/Stores/Films/Actions'
 import { LoremUserService } from 'App/Services/loremUserService'
 
 /**
@@ -9,19 +9,21 @@ import { LoremUserService } from 'App/Services/loremUserService'
  * Feel free to remove it.
  */
 const filterfilmList = (list) => {
-  return list.map(({ title, year, urlPoster, countries, rating, genres, directors, idIMDB, urlIMDB }) => {
-    return {
-      title,
-      year,
-      urlPoster,
-      countries,
-      rating,
-      directors,
-      genres,
-      idIMDB,
-      urlIMDB,
+  return list.map(
+    ({ title, year, urlPoster, countries, rating, genres, directors, idIMDB, urlIMDB }) => {
+      return {
+        title,
+        year,
+        urlPoster,
+        countries,
+        rating,
+        directors,
+        genres,
+        idIMDB,
+        urlIMDB,
+      }
     }
-  })
+  )
 }
 
 export function* fetchFilms() {

@@ -7,9 +7,9 @@ import FilmsActions from 'App/Stores/Films/Actions'
 import FilmsFeaturedActions from 'App/Stores/FilmsFeatured/Actions'
 import UserItem from '../../Components/UserItem/UserItemView'
 import { Container, Content, ListItem, Text, Left, H1, Body, Right, Button } from 'native-base'
-import Style from './UsersScreenStyle'
+import Style from './FeaturedScreenStyle'
 
-class UsersScreen extends React.Component {
+class FeaturedScreen extends React.Component {
   // componentDidMount() {
   //   this.props.fetchFilms()   // fetch in ..films_app\App\Sagas\StartupSaga.js
   // }
@@ -17,7 +17,7 @@ class UsersScreen extends React.Component {
   _renderFooter = (isLoading) =>
     isLoading ? (
       <View style={Style.loaderWrap}>
-        <Bars size={10} color="#FDAAFF" />
+        <Bars size={10} color="#FDAAFF"/>
       </View>
     ) : null
 
@@ -41,19 +41,30 @@ class UsersScreen extends React.Component {
     />
   )
 
+  _featuredFilmsArray = () => {
+    const { filmListIsLoading, filmList, filmsFeatured } = this.props
+
+    return filmList.filter(item => filmsFeatured.hasOwnProperty(item.idIMDB))
+  }
+
   render() {
-    const { filmListIsLoading, filmList, filmsFeatured, filmListErrorMessage } = this.props
+    const featuredFilmsArray = this._featuredFilmsArray()
+    const { filmListIsLoading, filmList, filmsFeatured } = this.props
     return (
       <Container>
         <Content>
-          <H1 style={Style.title}>List of {filmList.length} films</H1>
-          {
-            filmListErrorMessage ?
-              <Text style={Style.text}>{this.props.filmListErrorMessage}</Text>
-              : null
+          <H1 style={Style.title}>Featured films</H1>
+          {featuredFilmsArray.length === 0 &&
+          <Button
+            full
+            info
+            onPress={() => this.props.navigation.navigate('Films')}
+          >
+            <Text style={Style.noFilmText}>You have no featured films. {'\n'} Tap here and chose one.</Text>
+          </Button>
           }
           <FlatList
-            data={filmList}
+            data={featuredFilmsArray}
             // data={filmList}
             refreshing={filmListIsLoading}
             renderItem={this._renderItem}
@@ -69,7 +80,7 @@ class UsersScreen extends React.Component {
   }
 }
 
-UsersScreen.propsTypes = {
+FeaturedScreen.propsTypes = {
   filmList: PropTypes.array,
   filmsFeatured: PropTypes.object,
   filmListErrorMessage: PropTypes.string,
@@ -90,5 +101,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(UsersScreen)
+  mapDispatchToProps,
+)(FeaturedScreen)

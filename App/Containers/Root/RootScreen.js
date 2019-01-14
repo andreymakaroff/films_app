@@ -3,8 +3,9 @@ import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navig
 import NavigationService from 'App/Services/NavigationService'
 import { View } from 'react-native'
 import styles from './RootScreenStyle'
-import ExampleScreen from 'App/Containers/UsersScreen/UsersScreen'
+import UsersScreen from 'App/Containers/UsersScreen/UsersScreen'
 import ChartScreen from 'App/Containers/ChartScreen/ChartScreen'
+import FeaturedScreen from 'App/Containers/FeaturedScreen/FeaturedScreen'
 import SplashScreen from 'App/Containers/SplashScreen/SplashScreen'
 import { connect } from 'react-redux'
 import StartupActions from 'App/Stores/Startup/Actions'
@@ -16,9 +17,9 @@ import StartupActions from 'App/Stores/Startup/Actions'
  */
 const BottomTabNavigator = createMaterialTopTabNavigator(
   {
-    Films: ExampleScreen,
+    Featured: FeaturedScreen,
+    Films: UsersScreen,
     Chart: ChartScreen,
-    Featured: ChartScreen,
   },
   {
     tabBarOptions: {

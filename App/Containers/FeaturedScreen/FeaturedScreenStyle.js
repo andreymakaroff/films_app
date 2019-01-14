@@ -5,18 +5,27 @@ import ApplicationStyles from 'App/Theme/ApplicationStyles'
 export default StyleSheet.create({
   container: {
     ...ApplicationStyles.screen.container,
-    margin: 30,
     flex: 1,
     justifyContent: 'center',
   },
   title: {
     ...Fonts.style.h2,
     textAlign: 'center',
-    marginBottom: 10,
+    paddingTop: 20,
+    paddingBottom: 10,
   },
   text: {
     ...Fonts.style.normal,
     textAlign: 'center',
     marginBottom: 5,
+  },
+  loaderWrap: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  noFilmText: {
+    textAlign: 'center',
+    width: '100%',
   },
 })

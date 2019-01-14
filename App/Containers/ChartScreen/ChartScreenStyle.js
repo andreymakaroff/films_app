@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import Fonts from '../../Theme/Fonts'
 
 export default StyleSheet.create({
   container: {
@@ -7,6 +8,9 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    paddingVertical: 10,
+    ...Fonts.style.h2,
+    textAlign: 'center',
+    paddingTop: 20,
+    paddingBottom: 10,
   },
 })

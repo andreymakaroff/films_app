@@ -11,7 +11,8 @@ export default StyleSheet.create({
   title: {
     ...Fonts.style.h2,
     textAlign: 'center',
-    marginBottom: 10,
+    paddingTop: 20,
+    paddingBottom: 10,
   },
   text: {
     ...Fonts.style.normal,

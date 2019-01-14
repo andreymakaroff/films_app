@@ -6,7 +6,7 @@
 
 import { INITIAL_STATE } from './InitialState'
 import { createReducer } from 'reduxsauce'
-import { ExampleTypes } from './Actions'
+import { FilmsTypes } from './Actions'
 
 export const fetchFilmsLoading = (state) =>
   state.merge({
@@ -32,7 +32,7 @@ export const fetchFilmsFailure = (state, { errorMessage }) =>
  * @see https://github.com/infinitered/reduxsauce#createreducer
  */
 export const reducer = createReducer(INITIAL_STATE, {
-  [ExampleTypes.FETCH_FILMS_LOADING]: fetchFilmsLoading,
-  [ExampleTypes.FETCH_FILMS_SUCCESS]: fetchFilmsSuccess,
-  [ExampleTypes.FETCH_FILMS_FAILURE]: fetchFilmsFailure,
+  [FilmsTypes.FETCH_FILMS_LOADING]: fetchFilmsLoading,
+  [FilmsTypes.FETCH_FILMS_SUCCESS]: fetchFilmsSuccess,
+  [FilmsTypes.FETCH_FILMS_FAILURE]: fetchFilmsFailure,
 })

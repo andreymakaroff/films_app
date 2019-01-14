@@ -1,7 +1,7 @@
 const size = {
-  h1: 38,
-  h2: 34,
-  h3: 30,
+  h1: 30,
+  h2: 26,
+  h3: 22,
   input: 18,
   regular: 17,
   medium: 14,

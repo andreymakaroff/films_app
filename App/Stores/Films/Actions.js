@@ -28,5 +28,5 @@ const { Types, Creators } = createActions({
   fetchFilmsFailure: ['errorMessage'],
 })
 
-export const ExampleTypes = Types
+export const FilmsTypes = Types
 export default Creators
