@@ -16,8 +16,8 @@ import StartupActions from 'App/Stores/Startup/Actions'
  */
 const BottomTabNavigator = createMaterialTopTabNavigator(
   {
-    Chart: ChartScreen,
     Films: ExampleScreen,
+    Chart: ChartScreen,
     Featured: ChartScreen,
   },
   {

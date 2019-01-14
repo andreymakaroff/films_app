@@ -9,14 +9,15 @@ import { LoremUserService } from 'App/Services/loremUserService'
  * Feel free to remove it.
  */
 const filterfilmList = (list) => {
-  return list.map(({ title, year, releaseDate, urlPoster, countries, rating, idIMDB, urlIMDB }) => {
+  return list.map(({ title, year, urlPoster, countries, rating, genres, directors, idIMDB, urlIMDB }) => {
     return {
       title,
       year,
-      releaseDate,
       urlPoster,
       countries,
       rating,
+      directors,
+      genres,
       idIMDB,
       urlIMDB,
     }

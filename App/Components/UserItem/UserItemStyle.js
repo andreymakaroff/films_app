@@ -3,17 +3,15 @@ import Fonts from 'App/Theme/Fonts'
 import ApplicationStyles from 'App/Theme/ApplicationStyles'
 
 export default StyleSheet.create({
-  container: {
-    width: '100%',
+  poster: {
+    height: 300,
+    width: null,
+    flex: 1,
   },
-  title: {
-    ...Fonts.style.h2,
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  text: {
-    ...Fonts.style.normal,
-    textAlign: 'center',
-    marginBottom: 5,
+  link: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
+    textDecorationColor: 'blue',
   },
 })

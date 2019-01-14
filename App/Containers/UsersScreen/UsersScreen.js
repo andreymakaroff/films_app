@@ -1,10 +1,20 @@
 import React from 'react'
-import { Platform, Text, ScrollView, Button, View, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Bars } from 'react-native-loader'
 import { PropTypes } from 'prop-types'
 import UsersActions from 'App/Stores/Example/Actions'
 import UserItem from '../../Components/UserItem/UserItemView'
+import {
+  Container,
+  Content,
+  ListItem,
+  Text,
+  Left, H1,
+  Body,
+  Right,
+  Button,
+} from 'native-base'
 import Style from './UsersScreenStyle'
 
 class UsersScreen extends React.Component {
@@ -26,11 +36,12 @@ class UsersScreen extends React.Component {
       key={item.idIMDB}
       title={item.title}
       year={item.year}
-      releaseDate={item.releaseDate}
       urlPoster={item.urlPoster}
       countries={item.countries}
       rating={item.rating}
       idIMDB={item.idIMDB}
+      directors={item.directors}
+      genres={item.genres}
       urlIMDB={item.urlIMDB}
       // handler={() => this.handleGoTo(WORKOUT_INFO_SCREEN, { id: item.id })}
     />
@@ -40,10 +51,10 @@ class UsersScreen extends React.Component {
     const { filmListIsLoading, filmList } = this.props
 
     return (
-      <View style={Style.container}>
-        <ScrollView>
-          <Text style={Style.title}>List of 20 films</Text>
-          <View style={{ flex: 1 }}>
+      <Container>
+        <Content>
+          <H1>List of 20 films</H1>
+          <Text style={Style.text}>{this.props.filmListErrorMessage}</Text>
             <FlatList
               data={filmList}
               // data={filmList}
@@ -55,13 +66,8 @@ class UsersScreen extends React.Component {
               // onRefresh={this.handleRefresh}
               onEndReachedThreshold={0.5}
             />
-          </View>
-          <Text style={Style.text}>
-            The weather filmList is: {JSON.stringify(this.props.navigate)}
-          </Text>
-          <Text style={Style.text}>{this.props.filmListErrorMessage}</Text>
-        </ScrollView>
-      </View>
+        </Content>
+      </Container>
     )
   }
 }
