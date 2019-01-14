@@ -19,7 +19,13 @@ export const removeFilmFeatured = (state, { id }) => {
   })
 }
 
+export const makeSortFilmBy = (state, { key }) =>
+  state.merge({
+    sortFilmBy: key,
+  })
+
 export const reducer = createReducer(INITIAL_STATE, {
   [FilmFeaturedTypes.ADD_FILM_FEATURED]: addFilmFeatured,
   [FilmFeaturedTypes.REMOVE_FILM_FEATURED]: removeFilmFeatured,
+  [FilmFeaturedTypes.MAKE_SORT_FILM_BY]: makeSortFilmBy,
 })

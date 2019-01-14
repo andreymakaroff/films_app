@@ -47,11 +47,9 @@ class UsersScreen extends React.Component {
       <Container>
         <Content>
           <H1 style={Style.title}>List of {filmList.length} films</H1>
-          {
-            filmListErrorMessage ?
-              <Text style={Style.text}>{this.props.filmListErrorMessage}</Text>
-              : null
-          }
+          {filmListErrorMessage ? (
+            <Text style={Style.text}>{this.props.filmListErrorMessage}</Text>
+          ) : null}
           <FlatList
             data={filmList}
             // data={filmList}

@@ -17,9 +17,9 @@ import StartupActions from 'App/Stores/Startup/Actions'
  */
 const BottomTabNavigator = createMaterialTopTabNavigator(
   {
-    Featured: FeaturedScreen,
     Films: UsersScreen,
     Chart: ChartScreen,
+    Featured: FeaturedScreen,
   },
   {
     tabBarOptions: {

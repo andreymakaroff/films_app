@@ -1,89 +1,116 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, CardItem, Text, Left, Body, Right, Button } from 'native-base'
+import { Card, CardItem, Text, Left, Body, Button } from 'native-base'
 import { View, Image, TouchableOpacity, Linking } from 'react-native'
 import styles from './UserItemStyle'
 
-const UserItemView = ({
-  title,
-  year,
-  releaseDate,
-  urlPoster,
-  countries,
-  rating,
-  directors,
-  genres,
-  idIMDB,
-  urlIMDB,
-  filmsFeatured,
-  addHandler,
-  removeHandler,
-}) => (
-  <Card>
-    <CardItem>
-      <Text>{title}</Text>
-    </CardItem>
-    <CardItem cardBody>
-      <Left>
-        <Image source={{ uri: urlPoster }} style={styles.poster} />
-      </Left>
-      <Body>
-        <Text>
-          <Text note>Year: </Text>
-          {year}
-        </Text>
-        <Text>
-          <Text note>Rating: </Text>
-          {rating}
-        </Text>
-        <Text>
-          <Text note>{`Genre${genres.length > 1 ? 's' : ''}:`} </Text>
-          {genres.map((item, index) => (
-            <Text key={item}>
-              {index === 0 ? '' : ', '}
-              {item}
-            </Text>
-          ))}
-        </Text>
+class UserItemView extends React.Component {
+  state = {
+    featured: false,
+  }
 
-        <Text>
-          <Text note>{`Countrie${countries.length > 1 ? 's' : ''}:`} </Text>
-          {countries.map((item, index) => (
-            <Text key={item}>
-              {index === 0 ? '' : ', '}
-              {item}
-            </Text>
-          ))}
-        </Text>
+  handleTapFeatured = handler => {
+    this.setState({ featured: !this.state.featured }, () => handler())
+  }
 
-        <View>
-          <Text note>{`Director${directors.length > 1 ? 's' : ''}:`} </Text>
-          {directors.map(({ name, id }) => (
-            <TouchableOpacity
-              key={name}
-              onPress={() => Linking.openURL(`https://www.imdb.com/name/${id}/`)}
-            >
-              <Text style={styles.link}>{name}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </Body>
-    </CardItem>
-    <CardItem>
-      <Body>
-        {filmsFeatured.hasOwnProperty(idIMDB) ? (
-          <Button danger small full onPress={removeHandler}>
-            <Text>Remove from featured</Text>
-          </Button>
-        ) : (
-          <Button bordered success small full onPress={addHandler}>
-            <Text>Add to featured</Text>
-          </Button>
-        )}
-      </Body>
-    </CardItem>
-  </Card>
-)
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.featured !== nextProps.filmsFeatured.hasOwnProperty(nextProps.idIMDB)) {
+      return {
+        featured: nextProps.filmsFeatured.hasOwnProperty(nextProps.idIMDB),
+      }
+    }
+    return null
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.state.featured !== nextProps.filmsFeatured.hasOwnProperty(nextProps.idIMDB)
+  }
+
+
+  render() {
+    const { disabled, featured } = this.state
+    const {
+      title,
+      year,
+      urlPoster,
+      countries,
+      rating,
+      directors,
+      genres,
+      addHandler,
+      removeHandler
+    } = this.props
+
+    return (
+      <Card>
+        <CardItem>
+          <Text>{title}</Text>
+        </CardItem>
+        <CardItem cardBody>
+          <Left>
+            <Image source={{ uri: urlPoster }} style={styles.poster}/>
+          </Left>
+          <Body>
+          <Text>
+            <Text note>Year: </Text>
+            {year}
+          </Text>
+          <Text>
+            <Text note>Rating: </Text>
+            {rating}
+          </Text>
+          <Text>
+            <Text note>{`Genre${genres.length > 1 ? 's' : ''}:`} </Text>
+            {genres.map((item, index) => (
+              <Text key={item}>
+                {index === 0 ? '' : ', '}
+                {item}
+              </Text>
+            ))}
+          </Text>
+
+          <Text>
+            <Text note>{`Countrie${countries.length > 1 ? 's' : ''}:`} </Text>
+            {countries.map((item, index) => (
+              <Text key={item}>
+                {index === 0 ? '' : ', '}
+                {item}
+              </Text>
+            ))}
+          </Text>
+
+          <View>
+            <Text note>{`Director${directors.length > 1 ? 's' : ''}:`} </Text>
+            {directors.map(({ name, id }) => (
+              <TouchableOpacity
+                key={name}
+                onPress={() => Linking.openURL(`https://www.imdb.com/name/${id}/`)}
+              >
+                <Text style={styles.link}>{name}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+          </Body>
+        </CardItem>
+        <CardItem>
+          <Body>
+          {featured ? (
+            <Button danger small full
+                    disabled={disabled} onPress={() => this.handleTapFeatured(removeHandler)}>
+              <Text>Remove from featured</Text>
+            </Button>
+          ) : (
+            <Button bordered success small full
+                    disabled={disabled} onPress={() => this.handleTapFeatured(addHandler)}>
+              <Text>Add to featured</Text>
+            </Button>
+          )}
+          </Body>
+        </CardItem>
+      </Card>
+    )
+  }
+}
 
 UserItemView.propTypes = {
   title: PropTypes.string,
@@ -101,11 +128,5 @@ UserItemView.propTypes = {
   removeHandler: PropTypes.func,
 }
 
-UserItemView.defaultProps = {
-  name: {
-    first: 'Bob',
-    last: 'Marley',
-  },
-}
 
 export default UserItemView

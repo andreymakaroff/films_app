@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
+import { Root } from 'native-base'
 import createStore from 'App/Stores'
 import RootScreen from './Containers/Root/RootScreen'
 import SplashScreen from './Containers/SplashScreen/SplashScreen'
@@ -22,7 +23,9 @@ export default class App extends Component {
          * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
          */}
         <PersistGate loading={<SplashScreen />} persistor={persistor}>
-          <RootScreen />
+          <Root>
+            <RootScreen />
+          </Root>
         </PersistGate>
       </Provider>
     )
