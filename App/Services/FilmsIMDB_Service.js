@@ -554,7 +554,6 @@ const fakeData = [
   },
 ]
 
-
 const token = '2408fb43-c3cc-403e-a813-5536cda3a8eb'
 const url =
   'https://www.myapifilms.com/imdb/top?start=1&end=20&token=2408fb43-c3cc-403e-a813-5536cda3a8eb&format=json&data=1'

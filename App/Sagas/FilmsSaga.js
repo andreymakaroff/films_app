@@ -8,7 +8,8 @@ import { FilmsIMDB_Service } from 'App/Services/FilmsIMDB_Service'
  * This example saga contains only one to fetch the weather filmList.
  * Feel free to remove it.
  */
-const modifyfilmList = (list) => { // SAVE in store only what need
+const modifyfilmList = (list) => {
+  // SAVE in store only what need
   return list.map(
     ({ title, year, urlPoster, countries, rating, genres, directors, idIMDB, urlIMDB }) => {
       return {

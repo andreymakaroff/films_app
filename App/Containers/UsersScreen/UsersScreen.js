@@ -19,7 +19,7 @@ class UsersScreen extends React.Component {
   _renderFooter = (isLoading) =>
     isLoading ? (
       <View style={Style.loaderWrap}>
-        <Bars size={10} color="#FDAAFF"/>
+        <Bars size={10} color="#FDAAFF" />
       </View>
     ) : null
 
@@ -44,13 +44,10 @@ class UsersScreen extends React.Component {
   )
 
   render() {
-    const { filmListIsLoading, filmList, filmsFeatured, filmListErrorMessage } = this.props
+    const { filmListIsLoading, filmList, filmListErrorMessage, filmsFeatured } = this.props
     return (
       <Container>
-        <Content
-          style={Style.content}
-          contentContainerStyle={Style.content}
-        >
+        <Content style={Style.content} contentContainerStyle={Style.content}>
           <H1 style={Style.title}>List of {filmList.length} films</H1>
           {filmListErrorMessage ? (
             <Text style={Style.text}>{this.props.filmListErrorMessage}</Text>
@@ -91,5 +88,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(UsersScreen)

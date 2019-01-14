@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import { FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
@@ -6,14 +6,7 @@ import FilmsActions from 'App/Stores/Films/Actions'
 import FilmsFeaturedActions from 'App/Stores/FilmsFeatured/Actions'
 import UserItem from '../../Components/UserItem/UserItemView'
 import _ from 'lodash'
-import {
-  Container,
-  Content,
-  Text,
-  H1,
-  Button,
-  ActionSheet,
-} from 'native-base'
+import { Container, Content, Text, H1, Button, ActionSheet } from 'native-base'
 import Style from './FeaturedScreenStyle'
 
 const BUTTONS = ['name', 'year', 'default']
@@ -90,37 +83,35 @@ class FeaturedScreen extends React.Component {
         <Content>
           <H1 style={Style.title}>Featured films</H1>
           {featuredFilmsArray.length === 0 ? (
-              <Button full info onPress={() => this.props.navigation.navigate('Films')}>
-                <Text style={Style.noFilmText}>
-                  You have no featured films. {'\n'} Tap here and chose one.
-                </Text>
+            <Button full info onPress={() => this.props.navigation.navigate('Films')}>
+              <Text style={Style.noFilmText}>
+                You have no featured films. {'\n'} Tap here and chose one.
+              </Text>
+            </Button>
+          ) : (
+            <Fragment>
+              <Button
+                onPress={() =>
+                  ActionSheet.show(
+                    {
+                      options: BUTTONS,
+                      title: 'Sort by:',
+                    },
+                    (buttonIndex) => this._handlerSort(buttonIndex)
+                  )
+                }
+              >
+                <Text>Sort by</Text>
               </Button>
-            )
-            : (
-              <Fragment>
-                <Button
-                  onPress={() =>
-                    ActionSheet.show(
-                      {
-                        options: BUTTONS,
-                        title: 'Sort by:',
-                      },
-                      (buttonIndex) => this._handlerSort(buttonIndex),
-                    )
-                  }
-                >
-                  <Text>Sort by</Text>
-                </Button>
 
-                < Text > Sorted by {sortByText}</Text>
-                <FlatList
-                  data={featuredFilmsArray}
-                  renderItem={this._renderItem}
-                  keyExtractor={this._keyExtractor}
-                />
-              </Fragment>
-            )
-          }
+              <Text> Sorted by {sortByText}</Text>
+              <FlatList
+                data={featuredFilmsArray}
+                renderItem={this._renderItem}
+                keyExtractor={this._keyExtractor}
+              />
+            </Fragment>
+          )}
         </Content>
       </Container>
     )
@@ -152,5 +143,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(FeaturedScreen)
