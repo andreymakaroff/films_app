@@ -8,31 +8,31 @@ import { INITIAL_STATE } from './InitialState'
 import { createReducer } from 'reduxsauce'
 import { ExampleTypes } from './Actions'
 
-export const fetchUsersLoading = (state) =>
+export const fetchFilmsLoading = (state) =>
   state.merge({
-    userListIsLoading: true,
-    userListErrorMessage: '',
+    filmListIsLoading: true,
+    filmListErrorMessage: '',
   })
 
-export const fetchUsersSuccess = (state, { userList }) =>
+export const fetchFilmsSuccess = (state, { filmList }) =>
   state.merge({
-    userList: userList,
-    userListIsLoading: false,
-    userListErrorMessage: null,
+    filmList: filmList,
+    filmListIsLoading: false,
+    filmListErrorMessage: null,
   })
 
-export const fetchUsersFailure = (state, { errorMessage }) =>
+export const fetchFilmsFailure = (state, { errorMessage }) =>
   state.merge({
-    userList: null,
-    userListIsLoading: false,
-    userListErrorMessage: errorMessage,
+    filmList: null,
+    filmListIsLoading: false,
+    filmListErrorMessage: errorMessage,
   })
 
 /**
  * @see https://github.com/infinitered/reduxsauce#createreducer
  */
 export const reducer = createReducer(INITIAL_STATE, {
-  [ExampleTypes.FETCH_USERS_LOADING]: fetchUsersLoading,
-  [ExampleTypes.FETCH_USERS_SUCCESS]: fetchUsersSuccess,
-  [ExampleTypes.FETCH_USERS_FAILURE]: fetchUsersFailure,
+  [ExampleTypes.FETCH_FILMS_LOADING]: fetchFilmsLoading,
+  [ExampleTypes.FETCH_FILMS_SUCCESS]: fetchFilmsSuccess,
+  [ExampleTypes.FETCH_FILMS_FAILURE]: fetchFilmsFailure,
 })

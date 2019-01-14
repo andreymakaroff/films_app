@@ -4,7 +4,7 @@ import NavigationService from 'App/Services/NavigationService'
 import { View } from 'react-native'
 import styles from './RootScreenStyle'
 import ExampleScreen from 'App/Containers/UsersScreen/UsersScreen'
-import ExampleScreen2 from 'App/Containers/Example2/ExampleScreen'
+import ChartScreen from 'App/Containers/ChartScreen/ChartScreen'
 import SplashScreen from 'App/Containers/SplashScreen/SplashScreen'
 import { connect } from 'react-redux'
 import StartupActions from 'App/Stores/Startup/Actions'
@@ -16,9 +16,9 @@ import StartupActions from 'App/Stores/Startup/Actions'
  */
 const BottomTabNavigator = createMaterialTopTabNavigator(
   {
+    'Donut Chart': ChartScreen,
     Users: ExampleScreen,
-    'Donut Chart': ExampleScreen2,
-    Featured: ExampleScreen2,
+    Featured: ChartScreen,
   },
   {
     tabBarOptions: {

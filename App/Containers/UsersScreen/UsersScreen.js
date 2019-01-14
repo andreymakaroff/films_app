@@ -9,7 +9,7 @@ import Style from './UsersScreenStyle'
 
 class UsersScreen extends React.Component {
   componentDidMount() {
-    this.props.fetchUsers()
+    this.props.fetchFilms()
   }
 
   _renderFooter = (isLoading) =>
@@ -37,29 +37,29 @@ class UsersScreen extends React.Component {
   )
 
   render() {
-    const { userListIsLoading, userList } = this.props
-    console.log('@@@@@@@@@@', userList)
+    const { filmListIsLoading, filmList } = this.props
+
     return (
       <View style={Style.container}>
         <ScrollView>
           <Text style={Style.title}>List of 20 users</Text>
           <View style={{ flex: 1 }}>
             <FlatList
-              data={userList}
-              // data={userList}
-              refreshing={userListIsLoading}
+              data={filmList}
+              // data={filmList}
+              refreshing={filmListIsLoading}
               renderItem={this._renderItem}
               keyExtractor={this._keyExtractor}
-              ListFooterComponent={this._renderFooter(userListIsLoading)}
+              ListFooterComponent={this._renderFooter(filmListIsLoading)}
               // onEndReached={this.handleLoadMore}
               // onRefresh={this.handleRefresh}
               onEndReachedThreshold={0.5}
             />
           </View>
           <Text style={Style.text}>
-            The weather userList is: {JSON.stringify(this.props.navigate)}
+            The weather filmList is: {JSON.stringify(this.props.navigate)}
           </Text>
-          <Text style={Style.text}>{this.props.userListErrorMessage}</Text>
+          <Text style={Style.text}>{this.props.filmListErrorMessage}</Text>
         </ScrollView>
       </View>
     )
@@ -67,18 +67,18 @@ class UsersScreen extends React.Component {
 }
 
 UsersScreen.propsTypes = {
-  userList: PropTypes.array,
-  userListErrorMessage: PropTypes.string,
+  filmList: PropTypes.array,
+  filmListErrorMessage: PropTypes.string,
 }
 
 const mapStateToProps = (state) => ({
-  userList: state.example.get('userList').toJS(),
-  userListErrorMessage: state.example.get('userListErrorMessage'),
-  userListIsLoading: state.example.get('userListIsLoading'),
+  filmList: state.example.get('filmList').toJS(),
+  filmListErrorMessage: state.example.get('filmListErrorMessage'),
+  filmListIsLoading: state.example.get('filmListIsLoading'),
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUsers: () => dispatch(UsersActions.fetchUsers()),
+  fetchFilms: () => dispatch(UsersActions.fetchFilms()),
 })
 
 export default connect(

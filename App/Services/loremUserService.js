@@ -567,7 +567,7 @@ const loremUserApiClient = create({
   },
 })
 
-function fetchUsers() {
+function fetchFilms() {
   // return loremUserApiClient.get('?page=1&results=20').then((response) => {
   //   if (response.ok) {
   //     return response.data.results
@@ -578,5 +578,5 @@ function fetchUsers() {
 }
 
 export const LoremUserService = {
-  fetchUsers,
+  fetchFilms,
 }

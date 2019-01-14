@@ -5,10 +5,10 @@ import { LoremUserService } from 'App/Services/loremUserService'
 /**
  * A saga can contain multiple functions.
  *
- * This example saga contains only one to fetch the weather userList.
+ * This example saga contains only one to fetch the weather filmList.
  * Feel free to remove it.
  */
-const filterUserList = (list) => {
+const filterfilmList = (list) => {
   return list.map(({ title, year, releaseDate, urlPoster, countries, rating, idIMDB, urlIMDB }) => {
     return {
       title,
@@ -23,16 +23,16 @@ const filterUserList = (list) => {
   })
 }
 
-export function* fetchUsers() {
+export function* fetchFilms() {
   // Dispatch a redux action using `put()`
   // @see https://redux-saga.js.org/docs/basics/DispatchingActions.html
-  yield put(UsersActions.fetchUsersLoading())
+  yield put(UsersActions.fetchFilmsLoading())
 
-  // Fetch the userList from an API
-  const userList = yield call(LoremUserService.fetchUsers)
-  if (userList) {
-    yield put(UsersActions.fetchUsersSuccess(filterUserList(userList)))
+  // Fetch the filmList from an API
+  const filmList = yield call(LoremUserService.fetchFilms)
+  if (filmList) {
+    yield put(UsersActions.fetchFilmsSuccess(filterfilmList(filmList)))
   } else {
-    yield put(UsersActions.fetchUsersFailure('There was an error while fetching the userList.'))
+    yield put(UsersActions.fetchFilmsFailure('There was an error while fetching the filmList.'))
   }
 }

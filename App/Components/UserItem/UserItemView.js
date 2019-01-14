@@ -20,25 +20,28 @@ import {
 import styles from './UserItemStyle'
 
 const UserItemView = ({
-  title,
-  year,
-  releaseDate,
-  urlPoster,
-  countries,
-  rating,
-  idIMDB,
-  urlIMDB,
-}) => (
+                        title,
+                        year,
+                        releaseDate,
+                        urlPoster,
+                        countries,
+                        rating,
+                        idIMDB,
+                        urlIMDB,
+                      }) => (
+  <Card>
+    <CardItem header>
+      <Text>NativeBase</Text>
       <ListItem thumbnail>
         <Left>
-        <Thumbnail square source={{ uri: urlPoster }} />
+          <Thumbnail square source={{ uri: urlPoster }}/>
         </Left>
         <Body>
-          <Text>{title}</Text>
-          <Text note>{year}</Text>
-          <Text note numberOfLines={1}>
-            Its time to build a difference . .
-          </Text>
+        <Text>{title}</Text>
+        <Text note>{year}</Text>
+        <Text note numberOfLines={1}>
+          Its time to build a difference . .
+        </Text>
         </Body>
         <Right>
           <Button transparent>
@@ -46,6 +49,9 @@ const UserItemView = ({
           </Button>
         </Right>
       </ListItem>
+    </CardItem>
+  </Card>
+
 
 )
 
