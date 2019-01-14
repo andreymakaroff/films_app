@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react'
-import { View, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import { connect } from 'react-redux'
-import { Bars } from 'react-native-loader'
 import { PropTypes } from 'prop-types'
 import FilmsActions from 'App/Stores/Films/Actions'
 import FilmsFeaturedActions from 'App/Stores/FilmsFeatured/Actions'
@@ -120,11 +119,8 @@ class FeaturedScreen extends React.Component {
                   keyExtractor={this._keyExtractor}
                 />
               </Fragment>
-
             )
           }
-
-
         </Content>
       </Container>
     )

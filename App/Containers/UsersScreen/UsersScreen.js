@@ -6,7 +6,7 @@ import { PropTypes } from 'prop-types'
 import FilmsActions from 'App/Stores/Films/Actions'
 import FilmsFeaturedActions from 'App/Stores/FilmsFeatured/Actions'
 import UserItem from '../../Components/UserItem/UserItemView'
-import { Container, Content, ListItem, Text, Left, H1, Body, Right, Button } from 'native-base'
+import { Container, Content, Text, H1 } from 'native-base'
 import Style from './UsersScreenStyle'
 
 class UsersScreen extends React.Component {
@@ -14,10 +14,12 @@ class UsersScreen extends React.Component {
   //   this.props.fetchFilms()   // fetch in ..films_app\App\Sagas\StartupSaga.js
   // }
 
+  _handleRefresh = () => this.props.fetchFilms()
+
   _renderFooter = (isLoading) =>
     isLoading ? (
       <View style={Style.loaderWrap}>
-        <Bars size={10} color="#FDAAFF" />
+        <Bars size={10} color="#FDAAFF"/>
       </View>
     ) : null
 
@@ -45,20 +47,21 @@ class UsersScreen extends React.Component {
     const { filmListIsLoading, filmList, filmsFeatured, filmListErrorMessage } = this.props
     return (
       <Container>
-        <Content>
+        <Content
+          style={Style.content}
+          contentContainerStyle={Style.content}
+        >
           <H1 style={Style.title}>List of {filmList.length} films</H1>
           {filmListErrorMessage ? (
             <Text style={Style.text}>{this.props.filmListErrorMessage}</Text>
           ) : null}
           <FlatList
             data={filmList}
-            // data={filmList}
             refreshing={filmListIsLoading}
             renderItem={this._renderItem}
             keyExtractor={this._keyExtractor}
             ListFooterComponent={this._renderFooter(filmListIsLoading)}
-            // onEndReached={this.handleLoadMore}
-            // onRefresh={this.handleRefresh}
+            onRefresh={this._handleRefresh}
             onEndReachedThreshold={0.5}
           />
         </Content>
@@ -88,5 +91,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(UsersScreen)

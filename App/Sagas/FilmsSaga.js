@@ -1,6 +1,6 @@
 import { put, call } from 'redux-saga/effects'
-import UsersActions from 'App/Stores/Films/Actions'
-import { LoremUserService } from 'App/Services/loremUserService'
+import FilmsActions from 'App/Stores/Films/Actions'
+import { FilmsIMDB_Service } from 'App/Services/FilmsIMDB_Service'
 
 /**
  * A saga can contain multiple functions.
@@ -8,7 +8,7 @@ import { LoremUserService } from 'App/Services/loremUserService'
  * This example saga contains only one to fetch the weather filmList.
  * Feel free to remove it.
  */
-const filterfilmList = (list) => {
+const modifyfilmList = (list) => { // SAVE in store only what need
   return list.map(
     ({ title, year, urlPoster, countries, rating, genres, directors, idIMDB, urlIMDB }) => {
       return {
@@ -29,13 +29,13 @@ const filterfilmList = (list) => {
 export function* fetchFilms() {
   // Dispatch a redux action using `put()`
   // @see https://redux-saga.js.org/docs/basics/DispatchingActions.html
-  yield put(UsersActions.fetchFilmsLoading())
+  yield put(FilmsActions.fetchFilmsLoading())
 
   // Fetch the filmList from an API
-  const filmList = yield call(LoremUserService.fetchFilms)
+  const filmList = yield call(FilmsIMDB_Service.fetchFilms)
   if (filmList) {
-    yield put(UsersActions.fetchFilmsSuccess(filterfilmList(filmList)))
+    yield put(FilmsActions.fetchFilmsSuccess(modifyfilmList(filmList)))
   } else {
-    yield put(UsersActions.fetchFilmsFailure('There was an error while fetching the filmList.'))
+    yield put(FilmsActions.fetchFilmsFailure('There was an error while fetching the filmList.'))
   }
 }

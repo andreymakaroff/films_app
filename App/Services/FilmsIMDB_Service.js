@@ -553,10 +553,12 @@ const fakeData = [
     ranking: 20,
   },
 ]
+
+
 const token = '2408fb43-c3cc-403e-a813-5536cda3a8eb'
 const url =
   'https://www.myapifilms.com/imdb/top?start=1&end=20&token=2408fb43-c3cc-403e-a813-5536cda3a8eb&format=json&data=1'
-const loremUserApiClient = create({
+const loremFilmApiClient = create({
   /**
    * Import the config from the App/Config/index.js file
    */
@@ -574,9 +576,12 @@ function fetchFilms() {
   //   }
   //   return null
   // })
+
+  // FilmsIMDB_Service -- it is too SLOW!!!
+
   return fakeData
 }
 
-export const LoremUserService = {
+export const FilmsIMDB_Service = {
   fetchFilms,
 }

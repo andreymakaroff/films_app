@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
-import UsersActions from 'App/Stores/Films/Actions'
+import FilmsActions from 'App/Stores/Films/Actions'
 import PieChart from 'react-native-pie-chart'
 import { Container, Content, ListItem, Text, Left, H1, Body, Right, Button } from 'native-base'
 import Style from './ChartScreenStyle'
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchFilms: () => dispatch(UsersActions.fetchFilms()),
+  fetchFilms: () => dispatch(FilmsActions.fetchFilms()),
 })
 
 export default connect(

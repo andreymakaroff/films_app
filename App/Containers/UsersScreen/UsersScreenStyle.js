@@ -8,6 +8,9 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  content: {
+    flex: 1,
+  },
   title: {
     ...Fonts.style.h2,
     textAlign: 'center',
